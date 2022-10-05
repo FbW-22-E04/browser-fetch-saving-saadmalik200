@@ -24,6 +24,7 @@ input.addEventListener("change", async () => {
     savedArray.push(data1);
     view.displayMovieOnPage(data1);
     console.log(savedArray);
+    input.value = "";
   }
 });
 
@@ -36,6 +37,7 @@ resetBtn.addEventListener("click", () => {
   localStorage.removeItem("movies");
   //   savedArray = [];
   savedArray.splice(0);
+  input.value = "";
 });
 
 function loadTodos() {
