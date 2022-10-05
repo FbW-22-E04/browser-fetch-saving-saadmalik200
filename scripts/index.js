@@ -11,7 +11,7 @@ const resetBtn = document.querySelector(".btn-reset");
 const newClient = new Client();
 const view = new View();
 
-const savedArray = [];
+let savedArray = [];
 
 loadTodos();
 
@@ -24,12 +24,18 @@ input.addEventListener("change", async () => {
     savedArray.push(data1);
     view.displayMovieOnPage(data1);
     console.log(savedArray);
-    localStorage.setItem("movies", JSON.stringify(savedArray));
   }
+});
+
+saveBtn.addEventListener("click", () => {
+  localStorage.setItem("movies", JSON.stringify(savedArray));
 });
 
 resetBtn.addEventListener("click", () => {
   view.removeDisplay();
+  localStorage.removeItem("movies");
+  //   savedArray = [];
+  savedArray.splice(0);
 });
 
 function loadTodos() {
@@ -40,7 +46,7 @@ function loadTodos() {
     savedArray.push(...parsed);
     savedArray.forEach((item) => {
       //   const li = document.createElement("li");
-      console.log(item);
+      //   console.log(item);
       //   li.textContent = item;
       //   todoList.appendChild(li);
       view.displayMovieOnPage(item);
